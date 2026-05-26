@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LINE迷子 — 紹介資料</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Meiryo", "メイリオ", "Yu Gothic", sans-serif;
+    background: #f5f5f5;
+    color: #222;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+  }
+
+  /* ヘッダー */
+  .hero {
+    background: #0a3d20;
+    color: white;
+    text-align: center;
+    padding: 48px 20px 40px;
+  }
+  .hero h1 {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    margin-bottom: 10px;
+    color: #4de88a;
+  }
+  .hero p {
+    font-size: clamp(0.95rem, 3.5vw, 1.05rem);
+    color: #c0e8cc;
+  }
+  .hero .sub {
+    display: inline-block;
+    margin-top: 16px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: clamp(0.8rem, 3vw, 0.88rem);
+    color: #a8d8b8;
+  }
+
+  /* セクション共通 */
+  section {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 36px 16px;
+  }
+  section + section {
+    border-top: 1px solid #e5e5e5;
+  }
+  h2 {
+    font-size: clamp(1.1rem, 4.5vw, 1.3rem);
+    font-weight: 800;
+    margin-bottom: 18px;
+    color: #06C755;
+  }
+  h3 {
+    font-size: clamp(0.95rem, 3.5vw, 1.05rem);
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  /* できること */
+  .feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .feature-list li {
+    background: white;
+    border-radius: 10px;
+    padding: 13px 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: clamp(0.9rem, 3.5vw, 0.97rem);
+    line-height: 1.6;
+  }
+  .feature-list li .arrow {
+    color: #06C755;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* STEPカード */
+  .step-card {
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .step-header {
+    background: #f0faf3;
+    border-bottom: 1px solid #c8e6d0;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .step-num {
+    background: #06C755;
+    color: white;
+    font-weight: 800;
+    font-size: 0.85rem;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .step-header h3 {
+    color: #1a4a28;
+    margin: 0;
+    font-size: clamp(0.9rem, 3.5vw, 1rem);
+    line-height: 1.4;
+  }
+  .step-body {
+    padding: 16px;
+  }
+  .step-body p {
+    font-size: clamp(0.88rem, 3.2vw, 0.95rem);
+    color: #444;
+    margin-bottom: 14px;
+    line-height: 1.7;
+  }
+  .step-body img {
+    width: 100%;
+    max-width: 360px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  }
+  .step-note {
+    margin-top: 10px;
+    font-size: clamp(0.78rem, 2.8vw, 0.85rem);
+    color: #888;
+    text-align: center;
+  }
+
+  /* ルート見出し */
+  .route-heading {
+    margin: 8px 0 14px;
+    color: #1a4a28;
+    font-size: clamp(0.9rem, 3.5vw, 1rem);
+    font-weight: 700;
+    border-left: 4px solid #06C755;
+    padding-left: 12px;
+    line-height: 1.5;
+  }
+
+  /* ルート説明 */
+  .route-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 480px) {
+    .route-grid { grid-template-columns: 1fr; }
+  }
+  .route-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    border-top: 3px solid #06C755;
+  }
+  .route-card .route-label {
+    font-size: clamp(0.78rem, 3vw, 0.82rem);
+    font-weight: 700;
+    color: #06C755;
+    margin-bottom: 8px;
+    letter-spacing: 0.03em;
+  }
+  .route-card .route-flow {
+    font-size: clamp(0.82rem, 3vw, 0.88rem);
+    color: #444;
+    line-height: 1.9;
+  }
+  .route-card .route-flow span {
+    display: block;
+  }
+  .route-card .route-flow .arrow {
+    color: #aaa;
+    font-size: 0.75rem;
+    margin-left: 4px;
+  }
+
+  /* ペルソナ */
+  .persona-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 480px) {
+    .persona-grid { grid-template-columns: 1fr; }
+  }
+  .persona-card {
+    background: white;
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  }
+  .persona-card .label {
+    font-size: clamp(0.78rem, 3vw, 0.82rem);
+    font-weight: 700;
+    color: #06C755;
+    margin-bottom: 6px;
+  }
+  .persona-card p {
+    font-size: clamp(0.85rem, 3.2vw, 0.9rem);
+    color: #444;
+    line-height: 1.65;
+  }
+
+  /* FAQ */
+  .faq-item {
+    background: white;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  }
+  .faq-q {
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 6px;
+    font-size: clamp(0.9rem, 3.5vw, 0.95rem);
+    line-height: 1.5;
+  }
+  .faq-q::before {
+    content: "Q. ";
+    color: #06C755;
+  }
+  .faq-a {
+    font-size: clamp(0.88rem, 3.2vw, 0.92rem);
+    color: #555;
+    line-height: 1.7;
+  }
+
+  /* 料金 */
+  .plan-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 480px) {
+    .plan-grid { grid-template-columns: 1fr; }
+  }
+  .plan-card {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .plan-card.recommended {
+    border: 2px solid #06C755;
+  }
+  .plan-head {
+    background: #f0f0f0;
+    padding: 12px 16px;
+    font-weight: 700;
+    font-size: clamp(0.88rem, 3.5vw, 0.95rem);
+  }
+  .plan-card.recommended .plan-head {
+    background: #1a7a40;
+    color: white;
+  }
+  .plan-body {
+    padding: 16px;
+  }
+  .plan-price {
+    font-size: clamp(1.2rem, 5vw, 1.4rem);
+    font-weight: 800;
+    color: #06C755;
+    margin-bottom: 4px;
+  }
+  .plan-price span {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #888;
+  }
+  .plan-sub {
+    font-size: clamp(0.78rem, 2.8vw, 0.82rem);
+    color: #888;
+    margin-bottom: 14px;
+  }
+  .plan-features {
+    list-style: none;
+    font-size: 0.88rem;
+    color: #444;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .plan-features li::before {
+    content: "✓ ";
+    color: #06C755;
+    font-weight: 700;
+  }
+  .recommend-badge {
+    display: inline-block;
+    background: #fff3;
+    border: 1px solid #fff8;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    padding: 2px 10px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  /* フッター */
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    font-size: 0.85rem;
+    background: #0a3d20;
+    color: #a8d8b8;
+  }
+</style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<div class="hero">
+  <h1>LINE迷子</h1>
+  <p>LINEに写真を送るだけで、人脈が勝手に整理される</p>
+  <span class="sub">アプリのインストール不要 ／ 操作はLINEのみ</span>
+</div>
+
+<!-- 要するに -->
+<section style="background: white;">
+  <h2>こんな困りごと、ありませんか？</h2>
+  <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px;">
+    <div style="background: #fafafa; border-left: 3px solid #d0d0d0; border-radius: 6px; padding: 13px 18px; font-size: 0.95rem; color: #333; font-weight: 500;">
+      LINE交換したけど、あの人誰だっけ？
+    </div>
+    <div style="background: #fafafa; border-left: 3px solid #d0d0d0; border-radius: 6px; padding: 13px 18px; font-size: 0.95rem; color: #555;">
+      名刺はもらったけど、LINEのどの人か分からない
+    </div>
+    <div style="background: #fafafa; border-left: 3px solid #d0d0d0; border-radius: 6px; padding: 13px 18px; font-size: 0.95rem; color: #555;">
+      LINEはつながってないけど名刺交換した人もまとめて管理したい
+    </div>
+    <div style="background: #fafafa; border-left: 3px solid #d0d0d0; border-radius: 6px; padding: 13px 18px; font-size: 0.95rem; color: #555;">
+      打ち合わせの内容、どこかにメモしたけど見つからない
+    </div>
+  </div>
+  <div style="background: #f0faf3; border: 1.5px solid #a8dbb8; border-radius: 12px; padding: 24px 22px; text-align: center;">
+    <div style="font-size: 1.1rem; font-weight: 800; margin-bottom: 8px; color: #1a7a40;">LINE迷子が解決します</div>
+    <div style="font-size: 0.93rem; line-height: 1.85; color: #3a3a3a;">
+      LINEの人も、名刺だけの人も、会話の内容も<br>
+      <strong style="color: #1a7a40;">全部ひとりの人物として紐付けて蓄積</strong>する。<br>
+      後から「あの人誰だっけ」をLINEで聞けば答えが返ってくる。
+    </div>
+  </div>
+</section>
+
+<!-- できること -->
+<section>
+  <h2>これだけできます</h2>
+  <ul class="feature-list">
+    <li><span class="arrow">→</span><span>名刺を写真で送る　　会社・名前・電話・メールが自動で保存（裏表2枚まとめてOK）</span></li>
+    <li><span class="arrow">→</span><span>LINEのプロフィール画面を送る　　その人が登録される</span></li>
+    <li><span class="arrow">→</span><span>名刺とプロフィールを送る　　自動で同一人物として紐付けられる</span></li>
+    <li><span class="arrow">→</span><span>会話のスクショを送る　　AIが要約してメモになる</span></li>
+    <li><span class="arrow">→</span><span>LINEで「保険の人いる？」と聞く　　一覧で返ってくる</span></li>
+    <li><span class="arrow">→</span><span>「完了」と送る　　相手への挨拶文がコピペ用で出てくる</span></li>
+  </ul>
+</section>
+
+<!-- 使い方 -->
+<section>
+  <h2>2つの登録ルート</h2>
+
+  <div class="route-grid">
+    <div class="route-card">
+      <div class="route-label">名刺ルート（LINEつながっていない人も可）</div>
+      <div class="route-flow">
+        <span>① 名刺を送る（裏表2枚OK）</span>
+        <span class="arrow">↓</span>
+        <span>② ふりがなを入力（任意）</span>
+        <span class="arrow">↓</span>
+        <span>③ メモを送って「完了」</span>
+        <span class="arrow">↓</span>
+        <span>④ 後からLINEプロフを送ると自動で紐付け</span>
+      </div>
+    </div>
+    <div class="route-card">
+      <div class="route-label">プロフスタート（LINEつながった直後）</div>
+      <div class="route-flow">
+        <span>① プロフィールスクショを送る</span>
+        <span class="arrow">↓</span>
+        <span>② 名前・ふりがなを入力</span>
+        <span class="arrow">↓</span>
+        <span>③ 名刺を送ると自動で紐付け</span>
+        <span class="arrow">↓</span>
+        <span>④ メモを送って「完了」</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 名刺ルート -->
+  <h3 class="route-heading">名刺ルート — LINEつながっていない人も登録できる</h3>
+
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">1</div>
+      <h3>名刺を送る（裏表2枚まとめてOK）</h3>
+    </div>
+    <div class="step-body">
+      <p>名刺の写真をそのままLINE迷子に送る。裏表2枚同時でもOK。会社名・氏名・電話番号・メールアドレスが自動で読み取られる。LINEでつながっていない人も名刺だけで登録できる。</p>
+      <img src="images/名刺スタート/01_名刺裏表2枚_自動読み取り.JPEG" alt="名刺裏表2枚送信→自動読み取り結果">
+      <p class="step-note">裏表2枚まとめて送信 → 会社・連絡先が自動登録される</p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">2</div>
+      <h3>後からLINEプロフを送ると自動で同じ人に紐付く</h3>
+    </div>
+    <div class="step-body">
+      <p>名刺登録後にLINEでつながったら、プロフィール画面のスクショを送るだけ。名刺のデータと自動で同一人物として紐付けられる。改めて登録し直す必要はない。</p>
+      <img src="images/名刺スタート/02_プロフ送信_名刺と自動紐付け完了.JPEG" alt="プロフ送信→名刺データに自動紐付け完了">
+      <p class="step-note">プロフを送ると「LINEプロフィールを紐付けました」と返ってくる</p>
+    </div>
+  </div>
+
+  <!-- プロフスタートルート -->
+  <h3 class="route-heading">プロフスタート — LINEでつながった直後に登録する</h3>
+
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">3</div>
+      <h3>プロフィールスクショを送って仮登録</h3>
+    </div>
+    <div class="step-body">
+      <p>相手のプロフィール画面をスクリーンショットしてそのまま送る。「この方のフルネームとふりがなを教えてください」と返ってくるので名前を入力するだけ。</p>
+      <img src="images/プロフィールスタート/01_プロフ送信_仮登録_名前入力案内.JPEG" alt="プロフィールスクショ送信→仮登録→名前入力案内">
+      <p class="step-note">プロフを送る → 仮登録 → 名前を入力するだけ</p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">4</div>
+      <h3>名刺を送ると会社・連絡先が自動で紐付く</h3>
+    </div>
+    <div class="step-body">
+      <p>名前入力後に名刺の写真を送ると、会社名・役職・電話・メールが自動で読み取られて同じ人のデータに追記される。プロフと名刺が1人のデータとして完成する。</p>
+      <img src="images/プロフィールスタート/02_名前入力_名刺送信_追記完了.JPEG" alt="名前入力後に名刺送信→追記完了">
+      <p class="step-note">名刺を送るだけで会社・連絡先がプロフのデータに自動追記される</p>
+    </div>
+  </div>
+
+  <!-- 共通：検索 -->
+  <h3 class="route-heading">どちらのルートも — LINEで自然言語検索できる</h3>
+
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">5</div>
+      <h3>後から名前や業種で検索する</h3>
+    </div>
+    <div class="step-body">
+      <p>LINEに自然な言葉で聞くだけ。「藤田さん？」「保険の人は？」「先週会った人の連絡先は？」など、登録してある人の中から条件に合う情報が返ってくる。</p>
+      <img src="images/名刺スタート/03_検索_藤田さん_結果返答.JPEG" alt="「藤田さん？」と検索→情報が返ってくる">
+      <p class="step-note">名前や業種・印象で検索 → 連絡先までまとめて返ってくる</p>
+    </div>
+  </div>
+</section>
+
+<!-- ペルソナ -->
+<section>
+  <h2>こんな場面で使えます</h2>
+  <div class="persona-grid">
+    <div class="persona-card">
+      <div class="label">不動産営業</div>
+      <p>内見後にスクショを送る。3ヶ月後に「戸建て希望だった人いたっけ？」と聞けば出てくる。</p>
+    </div>
+    <div class="persona-card">
+      <div class="label">保険営業</div>
+      <p>名刺交換したその場で写真を送る。LINEにつながっていない見込み客も全員管理できる。</p>
+    </div>
+    <div class="persona-card">
+      <div class="label">士業・経営者</div>
+      <p>紹介でつながった人の経緯をメモしておく。「誰の紹介だったか」もLINEで聞けば返ってくる。</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <h2>よくある質問</h2>
+
+  <div class="faq-item">
+    <div class="faq-q">専用アプリを入れる必要はありますか？</div>
+    <div class="faq-a">不要です。普段使っているLINEだけで完結します。</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">LINEでつながっていない人も登録できますか？</div>
+    <div class="faq-a">できます。名刺の写真だけでも登録できます。後からLINEでつながってプロフィールを送ると、自動で同じ人のデータに紐付けられます。</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">名刺の裏表、2枚同時に送っても大丈夫ですか？</div>
+    <div class="faq-a">大丈夫です。2枚送ると表面の情報に裏面の情報（メールアドレスなど）が自動で追記されます。</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">データはどこに保存されますか？</div>
+    <div class="faq-a">自分のGoogleスプレッドシートとドライブに保存されます。</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">EightやmyBridgeとどう違うんですか？</div>
+    <div class="faq-a">
+      名刺管理アプリは「名刺がある人」しか登録できません。LINEだけでつながっている人・イベントで会った人・紹介でつながった人は登録できない。<br><br>
+      LINE迷子はLINEの人も名刺だけの人も全員対象で、名刺＋プロフィール＋会話の内容が1人のデータとして蓄積されます。「この人とどんな話をしたか」「誰の紹介だったか」がLINEで聞けば返ってきます。<br><br>
+      操作面では、競合はすべて専用アプリを開く必要があります。LINE迷子は普段使っているLINEに送るだけ。
+    </div>
+  </div>
+</section>
+
+<!-- 料金 -->
+<section>
+  <h2>料金・導入プラン</h2>
+  <div class="plan-grid">
+
+    <div class="plan-card recommended">
+      <div class="plan-head">
+        プランB（おまかせ）
+        <span class="recommend-badge">推奨</span>
+      </div>
+      <div class="plan-body">
+        <div class="plan-price">2,000円 <span>初期</span></div>
+        <div class="plan-sub">＋ 月額500円　／　年一括7,000円（1,000円お得）</div>
+        <ul class="plan-features">
+          <li>設定は全部おまかせ</li>
+          <li>LINEで使うだけ</li>
+          <li>軽微な文言変更は月額内で対応</li>
+          <li>カスタマイズ +3,000円/項目</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="plan-card">
+      <div class="plan-head">プランA（自己管理）</div>
+      <div class="plan-body">
+        <div class="plan-price">20,000円 <span>初期（出張費込み）</span></div>
+        <div class="plan-sub">買い切り・月額0円</div>
+        <ul class="plan-features">
+          <li>データは自分のGoogleアカウントのみ</li>
+          <li>GAS・スプレッドシートを自己管理</li>
+          <li>Gemini API利用料は自己負担（従量課金）</li>
+          <li>モデル廃止・仕様変更時は自己対応</li>
+          <li>トラブル・設定変更は都度見積もり</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  LINE迷子 — 個人向け人脈管理ツール
+</footer>
+
+</body>
+</html>
